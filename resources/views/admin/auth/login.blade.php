@@ -96,7 +96,7 @@
                         <input type="email" 
                                id="email" 
                                name="email" 
-                               value="{{ old('email', 'admin@vlexre.co.id') }}" 
+                               value="{{ old('email') }}" 
                                required 
                                autocomplete="email" 
                                autofocus
@@ -137,14 +137,6 @@
                     Masuk ke Sistem CMS
                 </button>
             </form>
-
-            <!-- Quick Hint Info -->
-            <div class="mt-6 pt-5 border-t border-slate-800/80 text-center">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400">
-                    <i class="fa-solid fa-key text-[#E2BC6A]"></i>
-                    <span>Default: <strong class="text-slate-200">admin@vlexre.co.id</strong> / <strong class="text-slate-200">password123</strong></span>
-                </div>
-            </div>
         </div>
 
         <!-- Back to Website -->
