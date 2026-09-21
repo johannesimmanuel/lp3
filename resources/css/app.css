@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color: #0f172a;
+    background-color: #ffffff;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background-color: #fce5e5;
+    color: #8b181e;
+  }
+}
+
+@layer utilities {
+  .hairline-b {
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  }
+  .hairline-t {
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+  }
+  .hairline-r {
+    border-right: 1px solid rgba(226, 232, 240, 0.8);
+  }
+}

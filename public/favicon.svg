@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="64" height="64">
+    <defs>
+        <linearGradient id="bgMaroon" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#5A0E1F"/>
+            <stop offset="100%" stop-color="#2A050D"/>
+        </linearGradient>
+        <linearGradient id="vGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F5D78E"/>
+            <stop offset="50%" stop-color="#C89B3C"/>
+            <stop offset="100%" stop-color="#9E7623"/>
+        </linearGradient>
+        <linearGradient id="vMaroon" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#A81D37"/>
+            <stop offset="100%" stop-color="#660E21"/>
+        </linearGradient>
+    </defs>
+    <!-- Rounded Background Container -->
+    <rect width="120" height="120" rx="26" fill="url(#bgMaroon)"/>
+    <rect width="116" height="116" x="2" y="2" rx="24" fill="none" stroke="#C89B3C" stroke-width="1.5" stroke-opacity="0.4"/>
+    
+    <!-- Vlex Re V Monogram & Gold Core -->
+    <g transform="translate(10, 2) scale(1)">
+        <!-- Left Wing -->
+        <path d="M18 18 L46 18 L30 84 L14 84 Z" fill="url(#vMaroon)"/>
+        <!-- Right Wing -->
+        <path d="M82 18 L54 18 L38 98 L52 98 Z" fill="url(#vMaroon)"/>
+        <!-- Central Gold Diamond -->
+        <polygon points="50,24 67,52 50,80 33,52" fill="url(#vGold)"/>
+        <!-- Inner Diamond Facet Highlight -->
+        <polygon points="50,30 61,52 50,74 39,52" fill="#FFFFFF" opacity="0.3"/>
+    </g>
+</svg>

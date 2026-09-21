@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" fill="none">
+  <!-- Outer Shield Crest / Faceted V Monogram -->
+  <defs>
+    <linearGradient id="maroonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B152B"/>
+      <stop offset="50%" stop-color="#5A0E1F"/>
+      <stop offset="100%" stop-color="#3B0A16"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D184"/>
+      <stop offset="50%" stop-color="#C89B3C"/>
+      <stop offset="100%" stop-color="#9E7623"/>
+    </linearGradient>
+  </defs>
+  <!-- Left Wing of V -->
+  <path d="M15 15 L45 15 L28 85 L10 85 Z" fill="url(#maroonGrad)"/>
+  <!-- Right Wing of V -->
+  <path d="M85 15 L55 15 L38 98 L52 98 Z" fill="url(#maroonGrad)"/>
+  <!-- Central Diamond / Prism Core -->
+  <polygon points="50,22 68,52 50,82 32,52" fill="url(#goldGrad)" opacity="0.95"/>
+  <!-- Micro Inner Facet -->
+  <polygon points="50,30 62,52 50,74 38,52" fill="#FFFFFF" opacity="0.25"/>
+</svg>
