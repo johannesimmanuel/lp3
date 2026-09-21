@@ -112,4 +112,15 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Session Inactivity Timeout (Seconds)
+    |--------------------------------------------------------------------------
+    |
+    | Number of seconds of inactivity before an admin session is automatically
+    | terminated. Defaults to 900 seconds (15 minutes).
+    |
+    */
+    'admin_timeout' => (int) env('ADMIN_SESSION_TIMEOUT', 900),
+
 ];

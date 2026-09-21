@@ -1,42 +1,25 @@
 <?php
 
-// Ensure required temporary directories exist in Vercel serverless environment
+// Prepare writable directories in /tmp for Vercel Serverless environment
 $dirs = [
-    '/tmp/views',
-    '/tmp/cache',
-    '/tmp/sessions',
+    '/tmp/storage/framework/views',
+    '/tmp/storage/framework/cache',
+    '/tmp/storage/framework/sessions',
+    '/tmp/storage/logs',
 ];
+
 foreach ($dirs as $dir) {
     if (!is_dir($dir)) {
-        @mkdir($dir, 0755, true);
+        mkdir($dir, 0755, true);
     }
 }
 
-// Copy seeded SQLite database to writable /tmp directory if not already there or if new deploy
+// Copy SQLite database to /tmp so it is accessible and writable
 $sourceDb = __DIR__ . '/../database/database.sqlite';
-$tmpDb = '/tmp/database.sqlite';
-$stampFile = '/tmp/db_deployed_stamp';
-$currentStamp = file_exists($sourceDb) ? (string) filemtime($sourceDb) : '0';
-
-if (file_exists($sourceDb)) {
-    $existingStamp = file_exists($stampFile) ? @file_get_contents($stampFile) : '';
-    if (!file_exists($tmpDb) || $existingStamp !== $currentStamp) {
-        @copy($sourceDb, $tmpDb);
-        @file_put_contents($stampFile, $currentStamp);
-    }
+$targetDb = '/tmp/database.sqlite';
+if (!file_exists($targetDb) && file_exists($sourceDb)) {
+    copy($sourceDb, $targetDb);
 }
 
-if (file_exists($tmpDb)) {
-    putenv('DB_DATABASE=' . $tmpDb);
-    $_ENV['DB_DATABASE'] = $tmpDb;
-    $_SERVER['DB_DATABASE'] = $tmpDb;
-}
-
-// Force HTTPS environment for serverless proxy
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-    $_SERVER['HTTPS'] = 'on';
-    $_SERVER['SERVER_PORT'] = 443;
-}
-
-// Forward request to Laravel public/index.php
+// Forward to public/index.php
 require __DIR__ . '/../public/index.php';

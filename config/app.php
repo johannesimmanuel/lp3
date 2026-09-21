@@ -123,4 +123,14 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Panel Custom URL Path
+    |--------------------------------------------------------------------------
+    |
+    | Obfuscates the admin panel URL to protect against automated scanners.
+    |
+    */
+    'admin_path' => env('ADMIN_PATH', 'portal-vlex'),
+
 ];

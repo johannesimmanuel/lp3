@@ -34,10 +34,14 @@ Route::post('/contact', [ContactController::class, 'submit'])->name('contact.sub
 | Admin & CMS Routes (PT Vlex Reinsurance)
 |--------------------------------------------------------------------------
 */
-Route::prefix('admin')->name('admin.')->group(function () {
+$adminPath = config('app.admin_path', 'portal-vlex');
+
+Route::prefix($adminPath)->name('admin.')->group(function () {
     // Guest Auth Routes
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
+    Route::post('/login', [AdminAuthController::class, 'login'])
+        ->middleware('throttle:5,1')
+        ->name('login.submit');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 
     // Protected CMS Routes
@@ -66,4 +70,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/settings', [AdminSettingController::class, 'update'])->name('settings.update');
     });
 });
+
+// Security: If custom admin path is active, block /admin to prevent discovery
+if ($adminPath !== 'admin') {
+    Route::any('/admin/{any?}', function () {
+        abort(404);
+    })->where('any', '.*');
+}
 

@@ -1,17 +1,19 @@
 {
   "version": 2,
   "framework": null,
-  "outputDirectory": "public",
-  "buildCommand": "npm run build",
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.7.4"
+      "runtime": "vercel-php@0.7.3"
     }
   },
   "routes": [
     {
-      "src": "/(build|assets|images|favicon.*|robots.txt|apple-touch-icon.*)(.*)",
-      "dest": "/$1$2"
+      "src": "/build/(.*)",
+      "dest": "/public/build/$1"
+    },
+    {
+      "src": "/(assets|images|css|js|favicon.ico|robots.txt)(.*)",
+      "dest": "/public/$1$2"
     },
     {
       "src": "/(.*)",
@@ -19,21 +21,22 @@
     }
   ],
   "env": {
+    "APP_NAME": "Vlex Reinsurance",
     "APP_ENV": "production",
     "APP_DEBUG": "false",
-    "APP_KEY": "base64:V+CzU9uE/RoItVOhPUauk6stqlaKjlr/nIosi05bYXQ=",
+    "APP_KEY": "base64:WnJDqHiGfJ01PvEXQUdiLowLi6BQF2TIrw6Cx0mlmnw=",
+    "APP_TIMEZONE": "Asia/Jakarta",
+    "DB_CONNECTION": "sqlite",
+    "DB_DATABASE": "/tmp/database.sqlite",
     "APP_CONFIG_CACHE": "/tmp/config.php",
     "APP_EVENTS_CACHE": "/tmp/events.php",
     "APP_PACKAGES_CACHE": "/tmp/packages.php",
     "APP_ROUTES_CACHE": "/tmp/routes.php",
     "APP_SERVICES_CACHE": "/tmp/services.php",
-    "VIEW_COMPILED_PATH": "/tmp/views",
+    "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie",
-    "SESSION_EXPIRE_ON_CLOSE": "true",
-    "SESSION_LIFETIME": "60",
     "LOG_CHANNEL": "stderr",
-    "DB_CONNECTION": "sqlite",
-    "DB_DATABASE": "/tmp/database.sqlite"
+    "ADMIN_PATH": "portal-vlex"
   }
 }
