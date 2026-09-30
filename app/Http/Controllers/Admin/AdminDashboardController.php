@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\ContactEnquiry;
 use App\Models\ManagementMember;
 use App\Models\Service;
-use App\Models\Setting;
 
 class AdminDashboardController extends Controller
 {

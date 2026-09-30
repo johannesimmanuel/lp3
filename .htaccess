@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent direct access to hidden files and dotfiles (.env, .git, etc.)
+    RewriteRule (^|/)\.(?!well-known/) - [F,L]
+
+    # Prevent direct access to sensitive extensions
+    RewriteRule \.(sqlite|sqlite3|db|env|lock|log)$ - [F,L]
+
+    # If web server DocumentRoot is pointed to the project root instead of /public,
+    # safely redirect incoming requests to /public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Fallback block for Apache if mod_rewrite is disabled
+<FilesMatch "^\.env">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

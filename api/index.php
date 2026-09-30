@@ -14,11 +14,21 @@ foreach ($dirs as $dir) {
     }
 }
 
-// Copy SQLite database to /tmp so it is accessible and writable
+// Copy SQLite database to /tmp so it is accessible and writable in serverless environment
 $sourceDb = __DIR__ . '/../database/database.sqlite';
 $targetDb = '/tmp/database.sqlite';
-if (!file_exists($targetDb) && file_exists($sourceDb)) {
-    copy($sourceDb, $targetDb);
+$stampFile = '/tmp/db_deployed_stamp';
+
+if (file_exists($sourceDb)) {
+    $currentStamp = (string) filemtime($sourceDb);
+    $existingStamp = file_exists($stampFile) ? @file_get_contents($stampFile) : '';
+
+    if (!file_exists($targetDb) || $existingStamp !== $currentStamp) {
+        @copy($sourceDb, $targetDb);
+        @file_put_contents($stampFile, $currentStamp);
+    }
+} elseif (!file_exists($targetDb)) {
+    @touch($targetDb);
 }
 
 // Forward to public/index.php

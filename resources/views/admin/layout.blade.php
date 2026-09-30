@@ -261,7 +261,7 @@
                     </div>
                 @endif
 
-                @if ($errors->any())
+                @if (isset($errors) && $errors->any())
                     <div class="mb-6 p-4 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-200 shadow-lg">
                         <div class="flex items-center gap-2 mb-2 font-semibold text-sm">
                             <i class="fa-solid fa-triangle-exclamation text-rose-400"></i>

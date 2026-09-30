@@ -17,12 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Admin User
+        // 1. Admin User (reads credentials from environment variables)
+        $adminEmail = env('ADMIN_EMAIL', 'admin@vlexre.co.id');
+        $adminPassword = env('ADMIN_INITIAL_PASSWORD', 'VlexRe#Portal2026!');
+
         User::updateOrCreate(
-            ['email' => 'admin@vlexre.co.id'],
+            ['email' => $adminEmail],
             [
                 'name' => 'Administrator Vlex Re',
-                'password' => Hash::make('password123'),
+                'password' => Hash::make($adminPassword),
                 'email_verified_at' => now(),
             ]
         );

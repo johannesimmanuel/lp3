@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactEnquiry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -24,10 +25,7 @@ class ContactController extends Controller
         ]);
 
         try {
-            // Attempt saving if ContactEnquiry model / table exists
-            if (class_exists(\App\Models\ContactEnquiry::class)) {
-                \App\Models\ContactEnquiry::create($validated);
-            }
+            ContactEnquiry::create($validated);
         } catch (\Throwable $e) {
             Log::info('Vlex Re Contact Enquiry received: ' . json_encode($validated));
         }
